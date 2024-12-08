@@ -7,7 +7,8 @@ import io.camunda.zeebe.client.api.worker.JobHandler;
 public class DataProcessHandler implements JobHandler {
     @Override
     public void handle(JobClient client, ActivatedJob job) {
-        System.out.println("Processing job " + job.getKey());
+        System.out.println("Running job: " + job.getKey());
+        System.out.println("Processing new data from sensor...");
         client.newCompleteCommand(job.getKey()).send().join();
     }
 }

@@ -57,7 +57,7 @@ public class App {
                             .timeout(Duration.ofSeconds(10).toMillis())
                             .open();
 
-            Thread.sleep(10000);
+            Thread.sleep(120000);
 
         } catch (Exception e) {
             e.printStackTrace();

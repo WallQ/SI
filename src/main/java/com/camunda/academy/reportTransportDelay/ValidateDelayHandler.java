@@ -12,14 +12,19 @@ public class ValidateDelayHandler implements JobHandler {
     public void handle(JobClient client, ActivatedJob job) {
         Random rand = new Random();
 
-        int delay = rand.nextInt(10) + 1;
+        int delay = rand.nextInt(6) + 1;
 
-        System.out.println("Processing job " + job.getKey());
-        System.out.println("Delay: " + delay);
+        System.out.println("Running job: " + job.getKey());
+        System.out.println("Validating delay...");
+
+        if (delay > 3) {
+            System.out.println("The system detected a delay of approximately " + delay + " minutes.");
+        } else {
+            System.out.println("The system ruled out a possible delay.");
+        }
 
         client
-                .newCompleteCommand(job.getKey())
-                .variables(Map.of("delay", (delay > 5)))
+                .newCompleteCommand(job.getKey()).variables(Map.of("delay", (delay > 3)))
                 .send()
                 .join();
     }
